@@ -18,17 +18,17 @@ namespace LibraryWda.API.Controllers
             new Book()
             {
                 Id = 1,
-                Title = "Maurycio Kemesson Nascimento Brito"
+                Title = "A três passos de você"
             },
             new Book()
             {
                 Id = 2,
-                Title = "Valdeli Araujo do nascimento"
+                Title = "Quem é você alasca"
             },
             new Book()
             {
                 Id = 3,
-                Title = "Antonio Rafael Jeday",
+                Title = "A culpa é das estrelas",
             }
         };
 
