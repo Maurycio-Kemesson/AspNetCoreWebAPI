@@ -94,6 +94,81 @@ namespace LibraryWda.API.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "PublishingCompanys",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 1, "Interseca" });
+
+            migrationBuilder.InsertData(
+                table: "Students",
+                columns: new[] { "Id", "Address", "Name", "Surname", "Telephone" },
+                values: new object[] { 1, "Rua A", "Maurycio", "Kemesson", "33225555" });
+
+            migrationBuilder.InsertData(
+                table: "Students",
+                columns: new[] { "Id", "Address", "Name", "Surname", "Telephone" },
+                values: new object[] { 2, "Rua A", "Valdeli", "Nascimento", "3354288" });
+
+            migrationBuilder.InsertData(
+                table: "Students",
+                columns: new[] { "Id", "Address", "Name", "Surname", "Telephone" },
+                values: new object[] { 3, "Rua A", "Rafael", "Araujo", "55668899" });
+
+            migrationBuilder.InsertData(
+                table: "Students",
+                columns: new[] { "Id", "Address", "Name", "Surname", "Telephone" },
+                values: new object[] { 4, "Rua A", "Lucas", "Unifametro", "6565659" });
+
+            migrationBuilder.InsertData(
+                table: "Students",
+                columns: new[] { "Id", "Address", "Name", "Surname", "Telephone" },
+                values: new object[] { 5, "Rua A", "Rhaun", "Junior", "565685415" });
+
+            migrationBuilder.InsertData(
+                table: "Students",
+                columns: new[] { "Id", "Address", "Name", "Surname", "Telephone" },
+                values: new object[] { 6, "Rua A", "Caio", "Alvares", "456454545" });
+
+            migrationBuilder.InsertData(
+                table: "Students",
+                columns: new[] { "Id", "Address", "Name", "Surname", "Telephone" },
+                values: new object[] { 7, "Rua A", "Pedro", "Lucas", "9874512" });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Email", "Name", "Password" },
+                values: new object[] { 1, "maurycio.kemesson@gmail.com", "Maurycio Kemesson", "Qwe123*" });
+
+            migrationBuilder.InsertData(
+                table: "Books",
+                columns: new[] { "Id", "PublishingCompanyId", "Title" },
+                values: new object[] { 1, 1, "A culpa é das estrelas" });
+
+            migrationBuilder.InsertData(
+                table: "Books",
+                columns: new[] { "Id", "PublishingCompanyId", "Title" },
+                values: new object[] { 2, 1, "Quem é você alasca" });
+
+            migrationBuilder.InsertData(
+                table: "Books",
+                columns: new[] { "Id", "PublishingCompanyId", "Title" },
+                values: new object[] { 3, 1, "A dois passos de você" });
+
+            migrationBuilder.InsertData(
+                table: "BookLoans",
+                columns: new[] { "StudentId", "BookId" },
+                values: new object[] { 1, 1 });
+
+            migrationBuilder.InsertData(
+                table: "BookLoans",
+                columns: new[] { "StudentId", "BookId" },
+                values: new object[] { 2, 2 });
+
+            migrationBuilder.InsertData(
+                table: "BookLoans",
+                columns: new[] { "StudentId", "BookId" },
+                values: new object[] { 3, 3 });
+
             migrationBuilder.CreateIndex(
                 name: "IX_BookLoans_BookId",
                 table: "BookLoans",

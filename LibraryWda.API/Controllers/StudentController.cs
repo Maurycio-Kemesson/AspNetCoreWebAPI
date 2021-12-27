@@ -1,7 +1,9 @@
 ﻿using LibraryWda.API.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using LibraryWda.API.Data;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,43 +14,23 @@ namespace LibraryWda.API.Controllers
     [ApiController]
     public class StudentController : ControllerBase
     {
-        public List<Student> Students = new List<Student>()
-        {
-            new Student()
-            {
-                Id = 1,
-                Name = "Maurycio",
-                Surname = "Kemesson Nascimento Brito",
-                Telephone = "(85) 98659-5978"
-            },
-            new Student()
-            {
-                Id = 2,
-                Name = "Valdeli",
-                Surname = "Araujo do Nascimento",
-                Telephone = "(85) 98559-5977"
-            },
-            new Student()
-            {
-                Id = 3,
-                Name = "Antonio",
-                Surname = "Rafael Jeday",
-                Telephone = "(85) 98859-5977"
-            }
-        };
+        private readonly DataContext _context;
 
-        public StudentController() { }
+        public StudentController(DataContext context)
+        {
+            _context = context;
+        }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(Students);
+            return Ok(_context.Students);
         }
 
         [HttpGet("byId/{id}")]
         public IActionResult GetById(int id)
         {
-            var student = Students.FirstOrDefault(s => s.Id == id);
+            var student = _context.Students.FirstOrDefault(s => s.Id == id);
             if (student == null) return BadRequest("The student was not found.");
 
             return Ok(student);
@@ -57,7 +39,7 @@ namespace LibraryWda.API.Controllers
         [HttpGet("ByName")]
         public IActionResult GetByName(string name, string surname)
         {
-            var student = Students.FirstOrDefault(s => 
+            var student = _context.Students.FirstOrDefault(s => 
                 s.Name.Contains(name) && s.Surname.Contains(surname)
             );
             if (student == null) return BadRequest("The student was not found.");
@@ -68,24 +50,41 @@ namespace LibraryWda.API.Controllers
         [HttpPost]
         public IActionResult Post(Student student)
         {
+            _context.Add(student);
+            _context.SaveChanges();
             return Ok(student);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int Id, Student student)
+        public IActionResult Put(int id, Student student)
         {
+            var stud = _context.Students.AsNoTracking().FirstOrDefault(s => s.Id == id);
+            if (stud == null) return BadRequest("The student was not found.");
+
+            _context.Update(student);
+            _context.SaveChanges();
             return Ok(student);
         }
 
         [HttpPatch("{id}")]
-        public IActionResult Patch(int Id, Student student)
+        public IActionResult Patch(int id, Student student)
         {
+            var stud = _context.Students.AsNoTracking().FirstOrDefault(s => s.Id == id);
+            if (stud == null) return BadRequest("The student was not found.");
+
+            _context.Update(student);
+            _context.SaveChanges();
             return Ok(student);
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int Id)
+        public IActionResult Delete(int id)
         {
+            var student = _context.Students.FirstOrDefault(s => s.Id == id);
+            if (student == null) return BadRequest("The student was not found.");
+
+            _context.Remove(student);
+            _context.SaveChanges();
             return Ok();
         }
 

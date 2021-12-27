@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibraryWda.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20211028095224_init")]
+    [Migration("20211204185954_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,6 +34,26 @@ namespace LibraryWda.API.Migrations
                     b.HasIndex("PublishingCompanyId");
 
                     b.ToTable("Books");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            PublishingCompanyId = 1,
+                            Title = "A culpa é das estrelas"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            PublishingCompanyId = 1,
+                            Title = "Quem é você alasca"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            PublishingCompanyId = 1,
+                            Title = "A dois passos de você"
+                        });
                 });
 
             modelBuilder.Entity("LibraryWda.API.Models.BookLoan", b =>
@@ -49,6 +69,23 @@ namespace LibraryWda.API.Migrations
                     b.HasIndex("BookId");
 
                     b.ToTable("BookLoans");
+
+                    b.HasData(
+                        new
+                        {
+                            StudentId = 1,
+                            BookId = 1
+                        },
+                        new
+                        {
+                            StudentId = 2,
+                            BookId = 2
+                        },
+                        new
+                        {
+                            StudentId = 3,
+                            BookId = 3
+                        });
                 });
 
             modelBuilder.Entity("LibraryWda.API.Models.PublishingCompany", b =>
@@ -63,6 +100,13 @@ namespace LibraryWda.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PublishingCompanys");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Interseca"
+                        });
                 });
 
             modelBuilder.Entity("LibraryWda.API.Models.Student", b =>
@@ -86,6 +130,64 @@ namespace LibraryWda.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Students");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "Rua A",
+                            Name = "Maurycio",
+                            Surname = "Kemesson",
+                            Telephone = "33225555"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Address = "Rua A",
+                            Name = "Valdeli",
+                            Surname = "Nascimento",
+                            Telephone = "3354288"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Address = "Rua A",
+                            Name = "Rafael",
+                            Surname = "Araujo",
+                            Telephone = "55668899"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Address = "Rua A",
+                            Name = "Lucas",
+                            Surname = "Unifametro",
+                            Telephone = "6565659"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Address = "Rua A",
+                            Name = "Rhaun",
+                            Surname = "Junior",
+                            Telephone = "565685415"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Address = "Rua A",
+                            Name = "Caio",
+                            Surname = "Alvares",
+                            Telephone = "456454545"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Address = "Rua A",
+                            Name = "Pedro",
+                            Surname = "Lucas",
+                            Telephone = "9874512"
+                        });
                 });
 
             modelBuilder.Entity("LibraryWda.API.Models.User", b =>
@@ -106,6 +208,15 @@ namespace LibraryWda.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "maurycio.kemesson@gmail.com",
+                            Name = "Maurycio Kemesson",
+                            Password = "Qwe123*"
+                        });
                 });
 
             modelBuilder.Entity("LibraryWda.API.Models.Book", b =>
