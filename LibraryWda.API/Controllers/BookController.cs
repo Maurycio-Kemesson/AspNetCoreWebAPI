@@ -15,34 +15,25 @@ namespace LibraryWda.API.Controllers
     [ApiController]
     public class BookController : ControllerBase
     {
-        private readonly DataContext _context;
+        
+        public readonly IRepository _repo;
 
-        public BookController(DataContext context)
+        public BookController(IRepository repo)
         {
-            _context = context;
+            _repo = repo;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_context.Books);
+            var result = _repo.GetAllBooks(true);
+            return Ok(result);
         }
 
-        [HttpGet("byId/{id}")]
+        [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            var book = _context.Books.FirstOrDefault(s => s.Id == id);
-            if (book == null) return BadRequest("The book was not found.");
-
-            return Ok(book);
-        }
-
-        [HttpGet("ByTitle")]
-        public IActionResult GetByTitle(string title)
-        {
-            var book = _context.Books.FirstOrDefault(s =>
-                s.Title.Contains(title)
-            );
+            var book = _repo.GetAllBookByID(id, false);
             if (book == null) return BadRequest("The book was not found.");
 
             return Ok(book);
@@ -51,42 +42,54 @@ namespace LibraryWda.API.Controllers
         [HttpPost]
         public IActionResult Post(Book book)
         {
-            _context.Add(book);
-            _context.SaveChanges();
-            return Ok(book);
+            _repo.Add(book);
+            if (_repo.SaveChanges())
+            {
+                return Ok(book);
+            }
+            return BadRequest("Unregistered book!");
         }
 
         [HttpPut("{id}")]
         public IActionResult Put(int id, Book book)
         {
-            var boo = _context.Books.AsNoTracking().FirstOrDefault(s => s.Id == id);
+            var boo = _repo.GetAllBookByID(id);
             if (boo == null) return BadRequest("The book was not found.");
 
-            _context.Update(book);
-            _context.SaveChanges();
-            return Ok(book);
+            _repo.Update(book);
+            if (_repo.SaveChanges())
+            {
+                return Ok(book);
+            }
+            return BadRequest("Book not updated!");
         }
 
         [HttpPatch("{id}")]
         public IActionResult Patch(int id, Book book)
         {
-            var boo = _context.Students.AsNoTracking().FirstOrDefault(s => s.Id == id);
+            var boo = _repo.GetAllBookByID(id);
             if (boo == null) return BadRequest("The book was not found.");
 
-            _context.Update(book);
-            _context.SaveChanges();
-            return Ok(book);
+            _repo.Update(book);
+            if (_repo.SaveChanges())
+            {
+                return Ok(book);
+            }
+            return BadRequest("Book not updated!");
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var book = _context.Books.FirstOrDefault(s => s.Id == id);
+            var book = _repo.GetAllBookByID(id);
             if (book == null) return BadRequest("The book was not found.");
 
-            _context.Remove(book);
-            _context.SaveChanges();
-            return Ok();
+            _repo.Delete(book);
+            if (_repo.SaveChanges())
+            {
+                return Ok("Deleted book");
+            }
+            return BadRequest("Undeleted book!");
         }
     }
 }
