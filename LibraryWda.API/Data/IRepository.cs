@@ -16,9 +16,21 @@ namespace LibraryWda.API.Data
         Student[] GetAllStudents(bool includeBook = false);
         Student[] GetAllStudentsByBookId(int bookId, bool includeBook = false);
         Student GetAllStudentByID(int studentId, bool includeBook = false);
+
         Book[] GetAllBooks(bool includeStudent = false);
         Book[] GetAllBooksByStudentId(int studentId, bool includeStudent = false);
         Book GetAllBookByID(int bookId, bool includeStudent = false);
+
+        User[] GetAllUsers();
+        User GetAllUserByID(int bookId);
+
+        PublishingCompany[] GetAllPublishingsCompanys();
+        PublishingCompany GetAllPublishingCompanyByID(int bookId);
+
+        BookLoan[] GetAllBooksLoans();
+        BookLoan GetAllBookLoanByID(int bookId);
+
+
 
 
 

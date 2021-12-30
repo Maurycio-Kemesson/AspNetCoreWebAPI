@@ -136,5 +136,67 @@ namespace LibraryWda.API.Data
 
             return query.FirstOrDefault();
         }
+
+        public User[] GetAllUsers()
+        {
+            IQueryable<User> query = _context.Users;
+
+            query = query.AsNoTracking().OrderBy(s => s.Id);
+
+            return query.ToArray();
+        }
+
+        public User GetAllUserByID(int userId)
+        {
+            IQueryable<User> query = _context.Users;
+
+            query = query.AsNoTracking()
+                .OrderBy(s => s.Id)
+                .Where(user => user.Id == userId);
+
+            return query.FirstOrDefault();
+        }
+
+        public PublishingCompany[] GetAllPublishingsCompanys()
+        {
+            IQueryable<PublishingCompany> query = _context.PublishingCompanys;
+
+            query = query.AsNoTracking().OrderBy(s => s.Id);
+
+            return query.ToArray();
+        }
+
+        public PublishingCompany GetAllPublishingCompanyByID(int publishingCompanyId)
+        {
+            IQueryable<PublishingCompany> query = _context.PublishingCompanys;
+
+            query = query.AsNoTracking()
+                .OrderBy(s => s.Id)
+                .Where(publishingcompany => publishingcompany.Id == publishingCompanyId);
+
+            return query.FirstOrDefault();
+        }
+
+        public BookLoan[] GetAllBooksLoans()
+        {
+            IQueryable<BookLoan> query = _context.BookLoans;
+
+            query = query.AsNoTracking().OrderBy(s => s.StudentId);
+
+            return query.ToArray();
+        }
+
+        public BookLoan GetAllBookLoanByID(int bookloanId)
+        {
+            IQueryable<BookLoan> query = _context.BookLoans;
+
+            query = query.AsNoTracking()
+                .OrderBy(s => s.StudentId)
+                .Where(bookloan => bookloan.StudentId == bookloanId);
+
+            return query.FirstOrDefault();
+        }
+
+      
     }
 }

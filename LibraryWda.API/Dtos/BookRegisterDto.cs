@@ -1,21 +1,13 @@
-﻿using System;
+﻿using LibraryWda.API.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace LibraryWda.API.Models
+namespace LibraryWda.API.Dtos
 {
-    public class Book
+    public class BookRegisterDto
     {
-
-        public Book() { }
-        public Book(int id, string title, string author, string gender,int quantities, int publishingCompanyId)
-        {
-            this.Id = id;
-            this.Title = title;
-            this.Author = author;
-            this.Gender = Gender;
-            this.Quantities = quantities;
-            this.PublishingCompanyId = publishingCompanyId;
-        }
         public int Id { get; set; }
         public string Img { get; set; }
         public string Title { get; set; }
@@ -27,6 +19,5 @@ namespace LibraryWda.API.Models
         public DateTime PublicationDate { get; set; }
         public PublishingCompany PublishingCompany { get; set; }
         public IEnumerable<BookLoan> BooksLoans { get; set; }
-
     }
 }

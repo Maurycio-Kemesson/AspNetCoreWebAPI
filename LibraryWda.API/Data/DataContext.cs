@@ -1,5 +1,6 @@
 ﻿using LibraryWda.API.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 
 namespace LibraryWda.API.Data
@@ -31,20 +32,17 @@ namespace LibraryWda.API.Data
 
             builder.Entity<Book>()
                 .HasData(new List<Book>{
-                    new Book(1, "A culpa é das estrelas", 1),
-                    new Book(2, "Quem é você alasca", 1),
-                    new Book(3, "A dois passos de você", 1)
+                    new Book(1, "A culpa é das estrelas", "John Green","Romance",1, 1),
+                    new Book(2, "Quem é você Alasca?", "John Green","Romance",1, 1),
+                    new Book(3, "Will & Will", "John Green","Romance",1, 1)
                 });
 
             builder.Entity<Student>()
                 .HasData(new List<Student>(){
-                    new Student(1, "Maurycio", "Kemesson", "33225555", "Rua A"),
-                    new Student(2, "Valdeli", "Nascimento", "3354288", "Rua A"),
-                    new Student(3, "Rafael", "Araujo", "55668899", "Rua A"),
-                    new Student(4, "Lucas", "Unifametro", "6565659", "Rua A"),
-                    new Student(5, "Rhaun", "Junior", "565685415", "Rua A"),
-                    new Student(6, "Caio", "Alvares", "456454545", "Rua A"),
-                    new Student(7, "Pedro", "Lucas", "9874512", "Rua A")
+                    new Student(1,20221 ,"Maurycio", "Kemesson", "33225555", "Rua A", DateTime.Parse("21/02/2001")),
+                    new Student(2, 20222, "Valdeli", "Nascimento", "3354288", "Rua A", DateTime.Parse("26/11/1997")),
+                    new Student(3, 20223,"Rafael", "Araujo", "55668899", "Rua A", DateTime.Parse("12/03/1985")),
+                   
                 });
 
             builder.Entity<BookLoan>()

@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using LibraryWda.API.Data;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using LibraryWda.API.Dtos;
+using AutoMapper;
 
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace LibraryWda.API.Controllers
 {
@@ -17,16 +17,26 @@ namespace LibraryWda.API.Controllers
         
         public readonly IRepository _repo;
 
-        public StudentController(IRepository repo)
+        public readonly IMapper _mapper;
+
+        public StudentController(IRepository repo, IMapper mapper)
         {
+            _mapper = mapper;
             _repo = repo;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            var result = _repo.GetAllStudents(true);
-            return Ok(result);
+            var students = _repo.GetAllStudents(true);
+            
+            return Ok(_mapper.Map<IEnumerable<StudentDto>>(students));
+        }
+
+        [HttpGet("getRegister")]
+        public IActionResult GetRegister()
+        {
+            return Ok(new StudentRegisterDto());
         }
 
         [HttpGet("{id}")]
@@ -35,44 +45,53 @@ namespace LibraryWda.API.Controllers
             var student = _repo.GetAllStudentByID(id, false);
             if (student == null) return BadRequest("The student was not found.");
 
-            return Ok(student);
+            var studentDto = _mapper.Map<StudentDto>(student);
+
+            return Ok(studentDto);
         }
 
         [HttpPost]
-        public IActionResult Post(Student student)
+        public IActionResult Post(StudentRegisterDto model)
         {
+
+            var student = _mapper.Map<Student>(model);
             _repo.Add(student);
             if (_repo.SaveChanges())
             {
-                return Ok(student);
+                return Created($"/api/student/{model.Id}", _mapper.Map<StudentDto>(student));
             }
             return BadRequest("Unregistered student!");
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, Student student)
+        public IActionResult Put(int id, StudentRegisterDto model)
         {
-            var stud = _repo.GetAllStudentByID(id);
-            if (stud == null) return BadRequest("The student was not found.");
+            var student = _repo.GetAllStudentByID(id);
+            if (student == null) return BadRequest("The student was not found.");
 
-            _repo.Update(stud);
+            _mapper.Map(model, student);
+
+            _repo.Update(student);
             if (_repo.SaveChanges())
             {
-                return Ok(stud);
+                return Created($"/api/student/{model.Id}", _mapper.Map<StudentDto>(student));
             }
             return BadRequest("Student not updated!");
         }
 
         [HttpPatch("{id}")]
-        public IActionResult Patch(int id, Student student)
+        public IActionResult Patch(int id, StudentRegisterDto model)
         {
-            var stud = _repo.GetAllStudentByID(id);
-            if (stud == null) return BadRequest("The student was not found.");
+            var student = _repo.GetAllStudentByID(id);
+            if (student == null) return BadRequest("The student was not found.");
 
-            _repo.Update(stud);
+            _mapper.Map(model, student);
+
+
+            _repo.Update(student);
             if (_repo.SaveChanges())
             {
-                return Ok(stud);
+                return Created($"/api/student/{model.Id}", _mapper.Map<StudentDto>(student));
             }
             return BadRequest("Student not updated!");
         }

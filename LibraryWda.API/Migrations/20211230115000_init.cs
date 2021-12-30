@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LibraryWda.API.Migrations
 {
@@ -12,7 +13,8 @@ namespace LibraryWda.API.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
+                    Initials = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -25,9 +27,14 @@ namespace LibraryWda.API.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    Registration = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Surname = table.Column<string>(nullable: true),
                     Telephone = table.Column<string>(nullable: true),
+                    BirthDate = table.Column<DateTime>(nullable: false),
+                    EnrollmentDate = table.Column<DateTime>(nullable: false),
+                    ClosingDate = table.Column<DateTime>(nullable: true),
+                    Status = table.Column<bool>(nullable: false),
                     Address = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -56,8 +63,14 @@ namespace LibraryWda.API.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    Img = table.Column<string>(nullable: true),
                     Title = table.Column<string>(nullable: true),
-                    PublishingCompanyId = table.Column<int>(nullable: false)
+                    Author = table.Column<string>(nullable: true),
+                    Gender = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    PublishingCompanyId = table.Column<int>(nullable: false),
+                    Quantities = table.Column<int>(nullable: false),
+                    PublicationDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -75,7 +88,10 @@ namespace LibraryWda.API.Migrations
                 columns: table => new
                 {
                     StudentId = table.Column<int>(nullable: false),
-                    BookId = table.Column<int>(nullable: false)
+                    BookId = table.Column<int>(nullable: false),
+                    LoanDate = table.Column<DateTime>(nullable: false),
+                    ReturnDate = table.Column<DateTime>(nullable: false),
+                    Status = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -96,43 +112,23 @@ namespace LibraryWda.API.Migrations
 
             migrationBuilder.InsertData(
                 table: "PublishingCompanys",
-                columns: new[] { "Id", "Name" },
-                values: new object[] { 1, "Interseca" });
+                columns: new[] { "Id", "Initials", "Name" },
+                values: new object[] { 1, null, "Interseca" });
 
             migrationBuilder.InsertData(
                 table: "Students",
-                columns: new[] { "Id", "Address", "Name", "Surname", "Telephone" },
-                values: new object[] { 1, "Rua A", "Maurycio", "Kemesson", "33225555" });
+                columns: new[] { "Id", "Address", "BirthDate", "ClosingDate", "EnrollmentDate", "Name", "Registration", "Status", "Surname", "Telephone" },
+                values: new object[] { 1, "Rua A", new DateTime(2001, 2, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2021, 12, 30, 8, 50, 0, 256, DateTimeKind.Local).AddTicks(1319), "Maurycio", 20221, true, "Kemesson", "33225555" });
 
             migrationBuilder.InsertData(
                 table: "Students",
-                columns: new[] { "Id", "Address", "Name", "Surname", "Telephone" },
-                values: new object[] { 2, "Rua A", "Valdeli", "Nascimento", "3354288" });
+                columns: new[] { "Id", "Address", "BirthDate", "ClosingDate", "EnrollmentDate", "Name", "Registration", "Status", "Surname", "Telephone" },
+                values: new object[] { 2, "Rua A", new DateTime(1997, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2021, 12, 30, 8, 50, 0, 257, DateTimeKind.Local).AddTicks(4368), "Valdeli", 20222, true, "Nascimento", "3354288" });
 
             migrationBuilder.InsertData(
                 table: "Students",
-                columns: new[] { "Id", "Address", "Name", "Surname", "Telephone" },
-                values: new object[] { 3, "Rua A", "Rafael", "Araujo", "55668899" });
-
-            migrationBuilder.InsertData(
-                table: "Students",
-                columns: new[] { "Id", "Address", "Name", "Surname", "Telephone" },
-                values: new object[] { 4, "Rua A", "Lucas", "Unifametro", "6565659" });
-
-            migrationBuilder.InsertData(
-                table: "Students",
-                columns: new[] { "Id", "Address", "Name", "Surname", "Telephone" },
-                values: new object[] { 5, "Rua A", "Rhaun", "Junior", "565685415" });
-
-            migrationBuilder.InsertData(
-                table: "Students",
-                columns: new[] { "Id", "Address", "Name", "Surname", "Telephone" },
-                values: new object[] { 6, "Rua A", "Caio", "Alvares", "456454545" });
-
-            migrationBuilder.InsertData(
-                table: "Students",
-                columns: new[] { "Id", "Address", "Name", "Surname", "Telephone" },
-                values: new object[] { 7, "Rua A", "Pedro", "Lucas", "9874512" });
+                columns: new[] { "Id", "Address", "BirthDate", "ClosingDate", "EnrollmentDate", "Name", "Registration", "Status", "Surname", "Telephone" },
+                values: new object[] { 3, "Rua A", new DateTime(1985, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2021, 12, 30, 8, 50, 0, 257, DateTimeKind.Local).AddTicks(4460), "Rafael", 20223, true, "Araujo", "55668899" });
 
             migrationBuilder.InsertData(
                 table: "Users",
@@ -141,33 +137,33 @@ namespace LibraryWda.API.Migrations
 
             migrationBuilder.InsertData(
                 table: "Books",
-                columns: new[] { "Id", "PublishingCompanyId", "Title" },
-                values: new object[] { 1, 1, "A culpa é das estrelas" });
+                columns: new[] { "Id", "Author", "Description", "Gender", "Img", "PublicationDate", "PublishingCompanyId", "Quantities", "Title" },
+                values: new object[] { 1, "John Green", null, null, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "A culpa é das estrelas" });
 
             migrationBuilder.InsertData(
                 table: "Books",
-                columns: new[] { "Id", "PublishingCompanyId", "Title" },
-                values: new object[] { 2, 1, "Quem é você alasca" });
+                columns: new[] { "Id", "Author", "Description", "Gender", "Img", "PublicationDate", "PublishingCompanyId", "Quantities", "Title" },
+                values: new object[] { 2, "John Green", null, null, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Quem é você Alasca?" });
 
             migrationBuilder.InsertData(
                 table: "Books",
-                columns: new[] { "Id", "PublishingCompanyId", "Title" },
-                values: new object[] { 3, 1, "A dois passos de você" });
+                columns: new[] { "Id", "Author", "Description", "Gender", "Img", "PublicationDate", "PublishingCompanyId", "Quantities", "Title" },
+                values: new object[] { 3, "John Green", null, null, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Will & Will" });
 
             migrationBuilder.InsertData(
                 table: "BookLoans",
-                columns: new[] { "StudentId", "BookId" },
-                values: new object[] { 1, 1 });
+                columns: new[] { "StudentId", "BookId", "LoanDate", "ReturnDate", "Status" },
+                values: new object[] { 1, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null });
 
             migrationBuilder.InsertData(
                 table: "BookLoans",
-                columns: new[] { "StudentId", "BookId" },
-                values: new object[] { 2, 2 });
+                columns: new[] { "StudentId", "BookId", "LoanDate", "ReturnDate", "Status" },
+                values: new object[] { 2, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null });
 
             migrationBuilder.InsertData(
                 table: "BookLoans",
-                columns: new[] { "StudentId", "BookId" },
-                values: new object[] { 3, 3 });
+                columns: new[] { "StudentId", "BookId", "LoanDate", "ReturnDate", "Status" },
+                values: new object[] { 3, 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_BookLoans_BookId",
