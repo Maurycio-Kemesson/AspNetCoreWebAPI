@@ -7,7 +7,13 @@ namespace LibraryWda.API.Dtos
 {
     public class BookDto
     {
+        /// <summary>
+        /// Bank identifier and key.
+        /// </summary>
         public int Id { get; set; }
+        /// <summary>
+        /// Book cover image.
+        /// </summary>
         public string Img { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }

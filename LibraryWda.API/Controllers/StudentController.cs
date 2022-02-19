@@ -10,8 +10,10 @@ using AutoMapper;
 
 namespace LibraryWda.API.Controllers
 {
-    [Route("api/[controller]")]
+    
     [ApiController]
+    [ApiVersion("2.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class StudentController : ControllerBase
     {
         

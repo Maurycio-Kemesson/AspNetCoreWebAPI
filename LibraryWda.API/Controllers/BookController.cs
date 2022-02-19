@@ -13,8 +13,13 @@ using LibraryWda.API.Dtos;
 
 namespace LibraryWda.API.Controllers
 {
-    [Route("api/[controller]")]
+    /// <summary>
+    /// 
+    /// </summary>
+    
     [ApiController]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class BookController : ControllerBase
     {
         
@@ -22,12 +27,21 @@ namespace LibraryWda.API.Controllers
 
         public readonly IMapper _mapper;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="repo"></param>
+        /// <param name="mapper"></param>
         public BookController(IRepository repo, IMapper mapper)
         {
             _mapper = mapper;
             _repo = repo;
         }
 
+        /// <summary>
+        /// Responsible method for returning all my books.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Get()
         {
@@ -36,12 +50,21 @@ namespace LibraryWda.API.Controllers
             return Ok(_mapper.Map<IEnumerable<BookDto>>(books));
         }
 
+        /// <summary>
+        /// Method responsible for returning only a single BookDTO.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getRegister")]
         public IActionResult GetRegister()
         {
             return Ok(new BookRegisterDto());
         }
 
+        /// <summary>
+        /// Method responsible for returns a book via ID.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -53,6 +76,11 @@ namespace LibraryWda.API.Controllers
             return Ok(bookDto);
         }
 
+        /// <summary>
+        /// Method responsible for registering a book.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Post(BookRegisterDto model)
         {
@@ -65,6 +93,12 @@ namespace LibraryWda.API.Controllers
             return BadRequest("Unregistered book!");
         }
 
+        /// <summary>
+        /// Method responsible for updating a book record.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public IActionResult Put(int id, BookRegisterDto model)
         {
@@ -81,6 +115,12 @@ namespace LibraryWda.API.Controllers
             return BadRequest("Book not updated!");
         }
 
+        /// <summary>
+        /// Method responsible for updating a book record.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPatch("{id}")]
         public IActionResult Patch(int id, BookRegisterDto model)
         {
@@ -97,6 +137,11 @@ namespace LibraryWda.API.Controllers
             return BadRequest("Book not updated!");
         }
 
+        /// <summary>
+        /// Method responsible for deleting a book record.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

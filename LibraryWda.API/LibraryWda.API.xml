@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LibraryWda.API</name>
+    </assembly>
+    <members>
+        <member name="T:LibraryWda.API.Controllers.BookController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:LibraryWda.API.Controllers.BookController.#ctor(LibraryWda.API.Data.IRepository,AutoMapper.IMapper)">
+            <summary>
+            
+            </summary>
+            <param name="repo"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:LibraryWda.API.Controllers.BookController.Get">
+            <summary>
+            Responsible method for returning all my books.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryWda.API.Controllers.BookController.GetRegister">
+            <summary>
+            Method responsible for returning only a single BookDTO.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryWda.API.Controllers.BookController.GetById(System.Int32)">
+            <summary>
+            Method responsible for returns a book via ID.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryWda.API.Controllers.BookController.Post(LibraryWda.API.Dtos.BookRegisterDto)">
+            <summary>
+            Method responsible for registering a book.
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryWda.API.Controllers.BookController.Put(System.Int32,LibraryWda.API.Dtos.BookRegisterDto)">
+            <summary>
+            Method responsible for updating a book record.
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryWda.API.Controllers.BookController.Patch(System.Int32,LibraryWda.API.Dtos.BookRegisterDto)">
+            <summary>
+            Method responsible for updating a book record.
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryWda.API.Controllers.BookController.Delete(System.Int32)">
+            <summary>
+            Method responsible for deleting a book record.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="P:LibraryWda.API.Dtos.BookDto.Id">
+            <summary>
+            Bank identifier and key.
+            </summary>
+        </member>
+        <member name="P:LibraryWda.API.Dtos.BookDto.Img">
+            <summary>
+            Book cover image.
+            </summary>
+        </member>
+    </members>
+</doc>
