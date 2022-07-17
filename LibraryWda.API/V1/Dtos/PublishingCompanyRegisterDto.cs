@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
 
-namespace LibraryWda.API.Dtos
+namespace LibraryWda.API.V1.Dtos
 {
     public class PublishingCompanyRegisterDto
     {

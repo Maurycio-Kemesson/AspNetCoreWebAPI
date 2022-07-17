@@ -1,12 +1,9 @@
 ﻿using AutoMapper;
-using LibraryWda.API.Dtos;
+using LibraryWda.API.V1.Dtos;
 using LibraryWda.API.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using LibraryWda.API.Helpers;
 
-namespace LibraryWda.API.Helpers
+namespace LibraryWda.API.V1.Helpers
 {
     public class LibraryWdaProfile : Profile
     {

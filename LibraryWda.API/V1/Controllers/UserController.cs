@@ -1,17 +1,15 @@
 ﻿using AutoMapper;
 using LibraryWda.API.Data;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LibraryWda.API.Dtos;
+using LibraryWda.API.V1.Dtos;
 using LibraryWda.API.Models;
 
-namespace LibraryWda.API.Controllers
+namespace LibraryWda.API.V1.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class UserController : ControllerBase
     {
         public readonly IRepository _repo;

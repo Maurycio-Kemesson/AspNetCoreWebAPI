@@ -2,16 +2,12 @@
 using LibraryWda.API.Data;
 using LibraryWda.API.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LibraryWda.API.Dtos;
+using LibraryWda.API.V1.Dtos;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace LibraryWda.API.Controllers
+namespace LibraryWda.API.V1.Controllers
 {
     /// <summary>
     /// 

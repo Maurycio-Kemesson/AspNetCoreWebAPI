@@ -2,17 +2,15 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using LibraryWda.API.Data;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using LibraryWda.API.Dtos;
+using LibraryWda.API.V1.Dtos;
 using AutoMapper;
 
 
-namespace LibraryWda.API.Controllers
+namespace LibraryWda.API.V1.Controllers
 {
     
     [ApiController]
-    [ApiVersion("2.0")]
+    [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     public class StudentController : ControllerBase
     {

@@ -4,45 +4,45 @@
         <name>LibraryWda.API</name>
     </assembly>
     <members>
-        <member name="T:LibraryWda.API.Controllers.BookController">
+        <member name="T:LibraryWda.API.V1.Controllers.BookController">
             <summary>
             
             </summary>
         </member>
-        <member name="M:LibraryWda.API.Controllers.BookController.#ctor(LibraryWda.API.Data.IRepository,AutoMapper.IMapper)">
+        <member name="M:LibraryWda.API.V1.Controllers.BookController.#ctor(LibraryWda.API.Data.IRepository,AutoMapper.IMapper)">
             <summary>
             
             </summary>
             <param name="repo"></param>
             <param name="mapper"></param>
         </member>
-        <member name="M:LibraryWda.API.Controllers.BookController.Get">
+        <member name="M:LibraryWda.API.V1.Controllers.BookController.Get">
             <summary>
             Responsible method for returning all my books.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:LibraryWda.API.Controllers.BookController.GetRegister">
+        <member name="M:LibraryWda.API.V1.Controllers.BookController.GetRegister">
             <summary>
             Method responsible for returning only a single BookDTO.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:LibraryWda.API.Controllers.BookController.GetById(System.Int32)">
+        <member name="M:LibraryWda.API.V1.Controllers.BookController.GetById(System.Int32)">
             <summary>
             Method responsible for returns a book via ID.
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:LibraryWda.API.Controllers.BookController.Post(LibraryWda.API.Dtos.BookRegisterDto)">
+        <member name="M:LibraryWda.API.V1.Controllers.BookController.Post(LibraryWda.API.V1.Dtos.BookRegisterDto)">
             <summary>
             Method responsible for registering a book.
             </summary>
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:LibraryWda.API.Controllers.BookController.Put(System.Int32,LibraryWda.API.Dtos.BookRegisterDto)">
+        <member name="M:LibraryWda.API.V1.Controllers.BookController.Put(System.Int32,LibraryWda.API.V1.Dtos.BookRegisterDto)">
             <summary>
             Method responsible for updating a book record.
             </summary>
@@ -50,7 +50,7 @@
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:LibraryWda.API.Controllers.BookController.Patch(System.Int32,LibraryWda.API.Dtos.BookRegisterDto)">
+        <member name="M:LibraryWda.API.V1.Controllers.BookController.Patch(System.Int32,LibraryWda.API.V1.Dtos.BookRegisterDto)">
             <summary>
             Method responsible for updating a book record.
             </summary>
@@ -58,19 +58,19 @@
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:LibraryWda.API.Controllers.BookController.Delete(System.Int32)">
+        <member name="M:LibraryWda.API.V1.Controllers.BookController.Delete(System.Int32)">
             <summary>
             Method responsible for deleting a book record.
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="P:LibraryWda.API.Dtos.BookDto.Id">
+        <member name="P:LibraryWda.API.V1.Dtos.BookDto.Id">
             <summary>
             Bank identifier and key.
             </summary>
         </member>
-        <member name="P:LibraryWda.API.Dtos.BookDto.Img">
+        <member name="P:LibraryWda.API.V1.Dtos.BookDto.Img">
             <summary>
             Book cover image.
             </summary>

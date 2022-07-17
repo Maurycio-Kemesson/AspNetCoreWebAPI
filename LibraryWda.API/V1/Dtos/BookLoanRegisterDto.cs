@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using LibraryWda.API.Models;
 
-namespace LibraryWda.API.Dtos
+namespace LibraryWda.API.V1.Dtos
 {
     public class BookLoanRegisterDto
     {
