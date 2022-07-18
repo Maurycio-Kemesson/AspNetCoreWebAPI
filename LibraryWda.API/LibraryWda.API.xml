@@ -16,7 +16,7 @@
             <param name="repo"></param>
             <param name="mapper"></param>
         </member>
-        <member name="M:LibraryWda.API.V1.Controllers.BookController.Get">
+        <member name="M:LibraryWda.API.V1.Controllers.BookController.Get(LibraryWda.API.Helpers.PageParams)">
             <summary>
             Responsible method for returning all my books.
             </summary>

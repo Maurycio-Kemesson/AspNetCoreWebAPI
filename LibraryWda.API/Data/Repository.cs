@@ -1,4 +1,5 @@
-﻿using LibraryWda.API.Models;
+﻿using LibraryWda.API.Helpers;
+using LibraryWda.API.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -87,13 +88,44 @@ namespace LibraryWda.API.Data
             return query.FirstOrDefault();
         }
 
+        public async Task<PageList<Book>> GetAllBooksAsync(PageParams pageParams, bool includeStudent = false)
+        {
+            IQueryable<Book> query = _context.Books;
+
+            if (includeStudent)
+            {
+                query = query.Include(s => s.BooksLoans);
+            }
+
+            query = query.AsNoTracking().OrderBy(s => s.Id);
+
+            if (!string.IsNullOrEmpty(pageParams.Title))
+                query = query.Where(book => book.Title
+                                                  .ToUpper()
+                                                  .Contains(pageParams.Title.ToUpper()));
+
+            if (!string.IsNullOrEmpty(pageParams.Author))
+                query = query.Where(book => book.Author
+                                                  .ToUpper()
+                                                  .Contains(pageParams.Author.ToUpper()));
+
+            if (!string.IsNullOrEmpty(pageParams.Gender))
+                query = query.Where(book => book.Gender
+                                                  .ToUpper()
+                                                  .Contains(pageParams.Gender.ToUpper()));
+
+
+
+            //return await query.ToListAsync();
+            return await PageList<Book>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
+        }
         public Book[] GetAllBooks(bool includeStudent = false)
         {
             IQueryable<Book> query = _context.Books;
 
             if (includeStudent)
             {
-                query = query.Include(b => b.BooksLoans);
+                query = query.Include(s => s.BooksLoans);
             }
 
             query = query.AsNoTracking().OrderBy(s => s.Id);

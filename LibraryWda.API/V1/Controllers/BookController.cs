@@ -4,6 +4,8 @@ using LibraryWda.API.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using LibraryWda.API.V1.Dtos;
+using System.Threading.Tasks;
+using LibraryWda.API.Helpers;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -39,11 +41,15 @@ namespace LibraryWda.API.V1.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get([FromQuery] PageParams pageParams)
         {
-            var books = _repo.GetAllBooks(true);
+            var books = await _repo.GetAllBooksAsync(pageParams, true);
 
-            return Ok(_mapper.Map<IEnumerable<BookDto>>(books));
+            var booksResult = _mapper.Map<IEnumerable<BookDto>>(books);
+
+            Response.AddPagination(books.CurrentPage, books.PageSize, books.TotalCount, books.TotalPages);
+
+            return Ok(booksResult);
         }
 
         /// <summary>
