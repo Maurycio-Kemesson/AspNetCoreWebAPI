@@ -1,9 +1,10 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LibraryWda.API.Migrations
 {
-    public partial class init : Migration
+    public partial class initMySql : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +13,7 @@ namespace LibraryWda.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     Initials = table.Column<string>(nullable: true)
                 },
@@ -26,7 +27,7 @@ namespace LibraryWda.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Registration = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Surname = table.Column<string>(nullable: true),
@@ -47,7 +48,7 @@ namespace LibraryWda.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     Password = table.Column<string>(nullable: true)
@@ -62,7 +63,7 @@ namespace LibraryWda.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Img = table.Column<string>(nullable: true),
                     Title = table.Column<string>(nullable: true),
                     Author = table.Column<string>(nullable: true),
@@ -118,17 +119,12 @@ namespace LibraryWda.API.Migrations
             migrationBuilder.InsertData(
                 table: "Students",
                 columns: new[] { "Id", "Address", "BirthDate", "ClosingDate", "EnrollmentDate", "Name", "Registration", "Status", "Surname", "Telephone" },
-                values: new object[] { 1, "Rua A", new DateTime(2001, 2, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2021, 12, 30, 8, 50, 0, 256, DateTimeKind.Local).AddTicks(1319), "Maurycio", 20221, true, "Kemesson", "33225555" });
-
-            migrationBuilder.InsertData(
-                table: "Students",
-                columns: new[] { "Id", "Address", "BirthDate", "ClosingDate", "EnrollmentDate", "Name", "Registration", "Status", "Surname", "Telephone" },
-                values: new object[] { 2, "Rua A", new DateTime(1997, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2021, 12, 30, 8, 50, 0, 257, DateTimeKind.Local).AddTicks(4368), "Valdeli", 20222, true, "Nascimento", "3354288" });
-
-            migrationBuilder.InsertData(
-                table: "Students",
-                columns: new[] { "Id", "Address", "BirthDate", "ClosingDate", "EnrollmentDate", "Name", "Registration", "Status", "Surname", "Telephone" },
-                values: new object[] { 3, "Rua A", new DateTime(1985, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2021, 12, 30, 8, 50, 0, 257, DateTimeKind.Local).AddTicks(4460), "Rafael", 20223, true, "Araujo", "55668899" });
+                values: new object[,]
+                {
+                    { 1, "Rua A", new DateTime(2001, 2, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2022, 7, 18, 16, 13, 38, 1, DateTimeKind.Local).AddTicks(7600), "Maurycio", 20221, true, "Kemesson", "33225555" },
+                    { 2, "Rua A", new DateTime(1997, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2022, 7, 18, 16, 13, 38, 2, DateTimeKind.Local).AddTicks(5916), "Valdeli", 20222, true, "Nascimento", "3354288" },
+                    { 3, "Rua A", new DateTime(1985, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2022, 7, 18, 16, 13, 38, 2, DateTimeKind.Local).AddTicks(5979), "Rafael", 20223, true, "Araujo", "55668899" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Users",

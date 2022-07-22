@@ -39,9 +39,9 @@ namespace LibraryWda.API.Data
 
             builder.Entity<Student>()
                 .HasData(new List<Student>(){
-                    new Student(1,20221 ,"Maurycio", "Kemesson", "33225555", "Rua A", DateTime.Parse("21/02/2001")),
-                    new Student(2, 20222, "Valdeli", "Nascimento", "3354288", "Rua A", DateTime.Parse("26/11/1997")),
-                    new Student(3, 20223,"Rafael", "Araujo", "55668899", "Rua A", DateTime.Parse("12/03/1985")),
+                    new Student(1,20221 ,"Maurycio", "Kemesson", "33225555", "Rua A", DateTime.ParseExact("26/11/1997", "dd/MM/yyyy", null)),
+                    new Student(2, 20222, "Valdeli", "Nascimento", "3354288", "Rua A",DateTime.ParseExact("26/11/1997", "dd/MM/yyyy", null)),
+                    new Student(3, 20223,"Rafael", "Araujo", "55668899", "Rua A", DateTime.ParseExact("26/11/1997", "dd/MM/yyyy", null)),
                    
                 });
 

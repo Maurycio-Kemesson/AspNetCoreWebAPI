@@ -14,37 +14,38 @@ namespace LibraryWda.API.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.0");
+                .HasAnnotation("ProductVersion", "3.1.0")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("LibraryWda.API.Models.Book", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("Author")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Description")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Gender")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Img")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<DateTime>("PublicationDate")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int>("PublishingCompanyId")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<int>("Quantities")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
 
@@ -85,19 +86,19 @@ namespace LibraryWda.API.Migrations
             modelBuilder.Entity("LibraryWda.API.Models.BookLoan", b =>
                 {
                     b.Property<int>("StudentId")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<int>("BookId")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("LoanDate")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime>("ReturnDate")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Status")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("StudentId", "BookId");
 
@@ -133,13 +134,13 @@ namespace LibraryWda.API.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("Initials")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
 
@@ -157,34 +158,34 @@ namespace LibraryWda.API.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("Address")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<DateTime>("BirthDate")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime?>("ClosingDate")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime>("EnrollmentDate")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("Registration")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<bool>("Status")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Surname")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Telephone")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
 
@@ -196,7 +197,7 @@ namespace LibraryWda.API.Migrations
                             Id = 1,
                             Address = "Rua A",
                             BirthDate = new DateTime(2001, 2, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnrollmentDate = new DateTime(2021, 12, 30, 8, 50, 0, 256, DateTimeKind.Local).AddTicks(1319),
+                            EnrollmentDate = new DateTime(2022, 7, 18, 16, 13, 38, 1, DateTimeKind.Local).AddTicks(7600),
                             Name = "Maurycio",
                             Registration = 20221,
                             Status = true,
@@ -208,7 +209,7 @@ namespace LibraryWda.API.Migrations
                             Id = 2,
                             Address = "Rua A",
                             BirthDate = new DateTime(1997, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnrollmentDate = new DateTime(2021, 12, 30, 8, 50, 0, 257, DateTimeKind.Local).AddTicks(4368),
+                            EnrollmentDate = new DateTime(2022, 7, 18, 16, 13, 38, 2, DateTimeKind.Local).AddTicks(5916),
                             Name = "Valdeli",
                             Registration = 20222,
                             Status = true,
@@ -220,7 +221,7 @@ namespace LibraryWda.API.Migrations
                             Id = 3,
                             Address = "Rua A",
                             BirthDate = new DateTime(1985, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnrollmentDate = new DateTime(2021, 12, 30, 8, 50, 0, 257, DateTimeKind.Local).AddTicks(4460),
+                            EnrollmentDate = new DateTime(2022, 7, 18, 16, 13, 38, 2, DateTimeKind.Local).AddTicks(5979),
                             Name = "Rafael",
                             Registration = 20223,
                             Status = true,
@@ -233,16 +234,16 @@ namespace LibraryWda.API.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Password")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
 

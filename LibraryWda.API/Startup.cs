@@ -26,14 +26,13 @@ namespace LibraryWda.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-         
             services.AddDbContext<DataContext>(
-                context => context.UseSqlite(Configuration.GetConnectionString("Default"))
+                context => context.UseMySql(Configuration.GetConnectionString("MySqlConnection"))
             );
 
-            services.AddControllersWithViews().AddNewtonsoftJson(
-                opt => opt.SerializerSettings.ReferenceLoopHandling = 
+            services.AddControllers()
+                    .AddNewtonsoftJson(
+                        opt => opt.SerializerSettings.ReferenceLoopHandling = 
                             Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
