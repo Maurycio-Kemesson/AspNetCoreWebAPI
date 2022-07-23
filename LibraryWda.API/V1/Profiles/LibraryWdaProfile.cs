@@ -24,6 +24,7 @@ namespace LibraryWda.API.V1.Helpers
             CreateMap<Book, BookDto>();
             CreateMap<BookDto, Book>();
             CreateMap<Book, BookRegisterDto>().ReverseMap();
+            CreateMap<Book, BookPatchDto>().ReverseMap();
 
             CreateMap<User, UserDto>();
             CreateMap<UserDto, User>();

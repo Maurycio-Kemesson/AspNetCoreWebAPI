@@ -88,6 +88,7 @@ namespace LibraryWda.API
                 options.IncludeXmlComments(xlmCommentsFullPath);
 
             });
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -106,6 +107,8 @@ namespace LibraryWda.API
             app.UseStaticFiles();
 
             app.UseRouting();
+            
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseSwagger()
                 .UseSwaggerUI(options =>
@@ -120,7 +123,7 @@ namespace LibraryWda.API
                     options.RoutePrefix = "";
                 });
 
-            app.UseAuthorization();
+           // app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

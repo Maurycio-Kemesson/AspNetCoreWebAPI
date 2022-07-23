@@ -124,7 +124,7 @@ namespace LibraryWda.API.V1.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPatch("{id}")]
-        public IActionResult Patch(int id, BookRegisterDto model)
+        public IActionResult Patch(int id, BookPatchDto model)
         {
             var book = _repo.GetAllBookByID(id);
             if (book == null) return BadRequest("The book was not found.");
@@ -134,7 +134,7 @@ namespace LibraryWda.API.V1.Controllers
             _repo.Update(book);
             if (_repo.SaveChanges())
             {
-                return Created($"/api/book/{model.Id}", _mapper.Map<BookDto>(book));
+                return Created($"/api/book/{model.Id}", _mapper.Map<BookPatchDto>(book));
             }
             return BadRequest("Book not updated!");
         }
